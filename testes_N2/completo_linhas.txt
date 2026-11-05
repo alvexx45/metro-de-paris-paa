@@ -1,0 +1,99 @@
+Linha1 amarela 11
+La_Défense Charles_de_Gaulle-Étoile
+Charles_de_Gaulle-Étoile Franklin_D._Roosevelt
+Franklin_D._Roosevelt Concorde
+Concorde Palais_Royal-Musée_du_Louvre
+Palais_Royal-Musée_du_Louvre Châtelet
+Châtelet Hôtel_de_Ville
+Hôtel_de_Ville Bastille
+Bastille Gare_de_Lyon
+Gare_de_Lyon Reuilly-Diderot
+Reuilly-Diderot Nation
+Nation Château_de_Vincennes
+Linha2 azul 6
+Porte_Dauphine Charles_de_Gaulle-Étoile
+Charles_de_Gaulle-Étoile Barbès-Rochechouart
+Barbès-Rochechouart Stalingrad
+Stalingrad Jaurès
+Jaurès Belleville
+Belleville Nation
+Linha4 magenta 9
+Porte_de_Clignancourt Barbès-Rochechouart
+Barbès-Rochechouart Gare_du_Nord
+Gare_du_Nord Gare_de_l'Est
+Gare_de_l'Est Strasbourg-Saint-Denis
+Strasbourg-Saint-Denis Châtelet
+Châtelet Montparnasse-Bienvenüe
+Montparnasse-Bienvenüe Raspail
+Raspail Denfert-Rochereau
+Denfert-Rochereau Bagneux-Lucie_Aubrac
+Linha5 laranja 8
+Bobigny-Pablo_Picasso Jaurès
+Jaurès Stalingrad
+Stalingrad Gare_du_Nord
+Gare_du_Nord Gare_de_l'Est
+Gare_de_l'Est République
+République Oberkampf
+Oberkampf Bastille
+Bastille Place_d'Italie
+Linha6 verde 9
+Charles_de_Gaulle-Étoile Trocadéro
+Trocadéro La_Motte-Picquet-Grenelle
+La_Motte-Picquet-Grenelle Montparnasse-Bienvenüe
+Montparnasse-Bienvenüe Raspail
+Raspail Denfert-Rochereau
+Denfert-Rochereau Place_d'Italie
+Place_d'Italie Bercy
+Bercy Daumesnil
+Daumesnil Nation
+Linha7 rosa 11
+La_Courneuve-8_Mai_1945 Stalingrad
+Stalingrad Gare_de_l'Est
+Gare_de_l'Est Chaussée_d'Antin-La_Fayette
+Chaussée_d'Antin-La_Fayette Opéra
+Opéra Pyramides
+Pyramides Palais_Royal-Musée_du_Louvre
+Palais_Royal-Musée_du_Louvre Châtelet
+Châtelet Place_d'Italie
+Place_d'Italie Maison_Blanche
+Maison_Blanche Villejuif-Louis_Aragon
+Maison_Blanche Mairie_d'Ivry
+Linha8 lilas 13
+Balard La_Motte-Picquet-Grenelle
+La_Motte-Picquet-Grenelle Concorde
+Concorde Madeleine
+Madeleine Opéra
+Opéra Richelieu-Drouot
+Richelieu-Drouot Grands_Boulevards
+Grands_Boulevards Bonne_Nouvelle
+Bonne_Nouvelle Strasbourg-Saint-Denis
+Strasbourg-Saint-Denis République
+République Bastille
+Bastille Reuilly-Diderot
+Reuilly-Diderot Daumesnil
+Daumesnil Pointe_du_Lac
+Linha9 oliva 11
+Pont_de_Sèvres Trocadéro
+Trocadéro Franklin_D._Roosevelt
+Franklin_D._Roosevelt Chaussée_d'Antin-La_Fayette
+Chaussée_d'Antin-La_Fayette Richelieu-Drouot
+Richelieu-Drouot Grands_Boulevards
+Grands_Boulevards Bonne_Nouvelle
+Bonne_Nouvelle Strasbourg-Saint-Denis
+Strasbourg-Saint-Denis République
+République Oberkampf
+Oberkampf Nation
+Nation Mairie_de_Montreuil
+Linha11 marrom 4
+Châtelet Hôtel_de_Ville
+Hôtel_de_Ville République
+République Belleville
+Belleville Rosny-Bois-Perrier
+Linha14 roxa 7
+Saint-Denis-Pleyel Madeleine
+Madeleine Pyramides
+Pyramides Châtelet
+Châtelet Gare_de_Lyon
+Gare_de_Lyon Bercy
+Bercy Maison_Blanche
+Maison_Blanche Aéroport_d'Orly
