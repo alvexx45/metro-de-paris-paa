@@ -6,38 +6,76 @@ Este documento contém as diretrizes técnicas, arquitetura e instruções prát
 
 ## 1. Regras do Edital & Cuidados Especiais
 
-1. **Arquivo Único (`main.cpp`):**
-   * O edital exige que toda a solução (estruturas de dados, parser, 9 algoritmos e interface gráfica) resida em um **único arquivo fonte**.
-   * Não divida o código em múltiplos `.cpp` ou `.h` criados pelo grupo na entrega final.
-2. **Ambiente de Apresentação:**
-   * A biblioteca Raylib **não está instalada** nas máquinas dos laboratórios da universidade.
-   * **Obrigatório:** O grupo deve apresentar o trabalho utilizando o **notebook próprio**, o que é expressamente permitido pelo edital.
+1. **Uso de CMake:**
+   * Com a liberação do **CMake**, o gerenciamento de dependências e a compilação tornam-se padronizados e portáveis entre Linux, Windows e macOS.
+   * Utilizando o módulo `FetchContent` do CMake, o próprio CMake pode baixar e compilar a Raylib automaticamente a partir do repositório oficial, **eliminando a necessidade de instalar previamente a biblioteca no sistema operacional**.
+2. **Arquivo Único (`main.cpp`):**
+   * O código fonte principal permanece centralizado em `main.cpp` (ou modularizado se o professor também tiver flexibilizado a regra de arquivo único junto com o CMake).
 3. **Threading para Não Travar o Loop Gráfico:**
    * A Raylib opera em modo imediato a 60 FPS (`while (!WindowShouldClose())`). Se a Força Bruta rodar na thread principal e demorar 10 segundos, o sistema operacional acusará que a janela congelou.
    * **Solução:** Disparar os algoritmos de busca pesados em uma thread secundária via `std::thread`, mantendo a interface interativa e com indicador de progresso.
 
 ---
 
-## 2. Como Instalar e Compilar
+## 2. Como Configurar e Compilar com CMake
 
-### Linux (Ubuntu / Debian / Fedora)
-Instalação dos pacotes de desenvolvimento:
-```bash
-sudo apt update
-sudo apt install libraylib-dev libgl1-mesa-dev libx11-dev
+Crie um arquivo `CMakeLists.txt` na raiz do projeto com o seguinte conteúdo (utilizando `FetchContent` para buscar a Raylib automaticamente caso ela não esteja instalada no sistema):
+
+```cmake
+cmake_minimum_required(VERSION 3.16)
+project(MetroParis LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Opções de otimização
+if(MSVC)
+    add_compile_options(/O2)
+else()
+    add_compile_options(-O3 -Wall -Wextra)
+endif()
+
+# Tenta encontrar a Raylib no sistema; se não encontrar, baixa via FetchContent
+find_package(raylib QUIET)
+
+if(NOT raylib_FOUND)
+    include(FetchContent)
+    message(STATUS "Raylib nao encontrada no sistema. Baixando via FetchContent...")
+    FetchContent_Declare(
+        raylib
+        GIT_REPOSITORY https://github.com/raysan5/raylib.git
+        GIT_TAG 5.0
+    )
+    # Desativa compilação de exemplos e bindings para acelerar o build
+    set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+    FetchContent_MakeAvailable(raylib)
+endif()
+
+# Executável do projeto
+add_executable(metro_paris main.cpp)
+
+# Vinculação das bibliotecas e threads
+target_link_libraries(metro_paris PRIVATE raylib)
+
+find_package(Threads REQUIRED)
+target_link_libraries(metro_paris PRIVATE Threads::Threads)
 ```
 
-Compilação do arquivo único (`main.cpp`):
-```bash
-g++ -O3 -std=c++17 main.cpp -o metro_paris -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
-./metro_paris
-```
+### Comandos de Compilação
 
-### Windows (MinGW-w64 / MSYS2)
+Para compilar em qualquer plataforma (Linux, Windows ou macOS):
+
 ```bash
-pacman -S mingw-w64-x86_64-raylib
-g++ -O3 -std=c++17 main.cpp -o metro_paris.exe -lraylib -lopengl32 -lgdi32 -lwinmm -lpthread
+# 1. Configurar o build
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+# 2. Compilar
+cmake --build build --config Release -j$(nproc)
+
+# 3. Executar
+./build/metro_paris
 ```
+*(No Windows, o executável gerado estará em `build/Release/metro_paris.exe` ou `build/metro_paris.exe`).*
 
 ---
 
