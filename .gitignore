@@ -1,1 +1,7 @@
 trab.pdf
+metro_paris
+*.o
+*.zip
+build/
+.DS_Store
+
