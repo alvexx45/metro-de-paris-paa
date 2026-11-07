@@ -1,9 +1,4 @@
 /**
- * Pontificia Universidade Catolica de Minas Gerais - ICEI
- * Disciplina: Projeto e Analise de Algoritmos (PAA)
- * Professor: Alexei Machado
- *
- * Trabalho Prático: O Metrô de Paris
  * Critério do Grupo: N = 2 (Linhas: 1, 2, 4, 5, 6, 7, 8, 9, 11, 14)
  *
  * Integrantes do Grupo:
@@ -33,9 +28,9 @@
 
 struct Estacao {
     std::string nomeOriginal;
-    std::string nomeLimpo;     // Sem underscores e com caracteres seguros para exibição
-    Vector2 pos;               // Coordenadas lidas do arquivo
-    std::vector<int> vizinhos; // Lista de adjacência (sem duplicatas)
+    std::string nomeLimpo;              // sem underscores e com caracteres seguros para exibição
+    Vector2 pos;                        // coordenadas lidas do arquivo
+    std::vector<int> vizinhos;          // lista de adjacência (sem duplicatas)
     std::vector<std::string> linhas;
 };
 
@@ -81,23 +76,23 @@ struct Grafo {
     }
 
     static Color converterCor(const std::string& nomeCor) {
-        if (nomeCor == "amarela") return Color{ 255, 206, 0, 255 };   // Linha 1
-        if (nomeCor == "azul")    return Color{ 0, 100, 176, 255 };   // Linha 2
-        if (nomeCor == "magenta") return Color{ 189, 0, 129, 255 };  // Linha 4
-        if (nomeCor == "laranja") return Color{ 245, 156, 0, 255 };  // Linha 5
-        if (nomeCor == "verde")   return Color{ 130, 196, 108, 255 };// Linha 6
-        if (nomeCor == "rosa")    return Color{ 243, 164, 186, 255 };// Linha 7
-        if (nomeCor == "lilas")   return Color{ 197, 163, 202, 255 };// Linha 8
-        if (nomeCor == "oliva")   return Color{ 206, 201, 43, 255 }; // Linha 9
-        if (nomeCor == "marrom")  return Color{ 141, 94, 42, 255 };   // Linha 11
-        if (nomeCor == "roxa")    return Color{ 102, 36, 131, 255 };  // Linha 14
+        if (nomeCor == "amarela") return Color{ 255, 206, 0, 255 };     // linha 1
+        if (nomeCor == "azul")    return Color{ 0, 100, 176, 255 };     // linha 2
+        if (nomeCor == "magenta") return Color{ 189, 0, 129, 255 };     // linha 4
+        if (nomeCor == "laranja") return Color{ 245, 156, 0, 255 };     // linha 5
+        if (nomeCor == "verde")   return Color{ 130, 196, 108, 255 };   // linha 6
+        if (nomeCor == "rosa")    return Color{ 243, 164, 186, 255 };   // linha 7
+        if (nomeCor == "lilas")   return Color{ 197, 163, 202, 255 };   // linha 8
+        if (nomeCor == "oliva")   return Color{ 206, 201, 43, 255 };    // linha 9
+        if (nomeCor == "marrom")  return Color{ 141, 94, 42, 255 };     // linha 11
+        if (nomeCor == "roxa")    return Color{ 102, 36, 131, 255 };    // linha 14
         return LIGHTGRAY;
     }
 
     bool carregar(const std::string& arqEstacoes, const std::string& arqLinhas) {
         limpar();
 
-        // 1. Ler Estações
+        // ler estações
         std::ifstream fEst(arqEstacoes);
         if (!fEst.is_open()) {
             std::cerr << "Erro ao abrir arquivo: " << arqEstacoes << std::endl;
@@ -117,7 +112,7 @@ struct Grafo {
         }
         fEst.close();
 
-        // 2. Ler Linhas e Trechos
+        // ler linhas e trechos
         std::ifstream fLin(arqLinhas);
         if (!fLin.is_open()) {
             std::cerr << "Erro ao abrir arquivo: " << arqLinhas << std::endl;
@@ -146,7 +141,7 @@ struct Grafo {
         }
         fLin.close();
 
-        // 3. Montar grafo simples (matriz e listas sem repetição para os algoritmos)
+        // montar grafo simples (matriz e listas sem repetição para os algoritmos)
         int n = (int)estacoes.size();
         matrizAdj.assign(n, std::vector<bool>(n, false));
 
@@ -162,10 +157,7 @@ struct Grafo {
     }
 };
 
-// ============================================================================
-// RESULTADOS DOS ALGORITMOS
-// ============================================================================
-
+// resultados
 enum class TipoProblema {
     MAIOR_CICLO = 0,
     GUICHES = 1,
@@ -184,13 +176,13 @@ struct Resultado {
     double tempoMs = 0.0;
     std::string descricao;
     
-    // Problema (a): Sequência de vértices do ciclo
+    // problema a
     std::vector<int> ciclo;
 
-    // Problema (b): Vértices com guichê
+    // problema b
     std::vector<int> guiches;
 
-    // Problema (c): Cor de cada vértice (período 1..K)
+    // problema c
     std::vector<int> cores;
     int numCores = 0;
 
@@ -204,13 +196,8 @@ struct Resultado {
     }
 };
 
-// ============================================================================
-// ESPAÇO PARA IMPLEMENTAÇÃO DOS ALGORITMOS PELO GRUPO
-// ============================================================================
-
-// Problema (a): Determinar o número máximo de estações que um turista poderá
-// visitar com um só passe, saindo e retornando de uma determinada estação
-// (Maior ciclo simples contendo uma estação inicial)
+// algoritmos
+// problema a
 namespace SolucoesCiclo {
 
     std::vector<int> forcaBruta(const Grafo& g, int inicio) {
@@ -232,9 +219,7 @@ namespace SolucoesCiclo {
     }
 }
 
-// Problema (b): Determinar as estações para instalação de guichês para venda de
-// passes, de modo que não seja preciso caminhar mais que uma estação para achar um guichê
-// (Menor conjunto dominante)
+// problema b
 namespace SolucoesGuiches {
 
     std::vector<int> forcaBruta(const Grafo& g) {
@@ -256,9 +241,7 @@ namespace SolucoesGuiches {
     }
 }
 
-// Problema (c): Determinar o menor número de períodos de manutenção necessários
-// de forma que estações conectadas diretamente pela mesma linha não fiquem em manutenção juntas
-// (Coloração mínima de vértices / número cromático)
+// problema c
 namespace SolucoesColoracao {
 
     std::pair<int, std::vector<int>> forcaBruta(const Grafo& g) {
@@ -280,10 +263,7 @@ namespace SolucoesColoracao {
     }
 }
 
-// ============================================================================
-// APLICAÇÃO E INTERFACE GRÁFICA (RAYLIB)
-// ============================================================================
-
+// interface gráfica com raylib
 class AppMetro {
 public:
     Grafo grafo;
@@ -726,10 +706,6 @@ public:
     }
 };
 
-// ============================================================================
-// MAIN
-// ============================================================================
-
 int main() {
     const int larguraJanela = 1280;
     const int alturaJanela = 768;
@@ -743,7 +719,7 @@ int main() {
     app.areaMapa = { 340.0f, 0.0f, (float)larguraJanela - 340.0f, (float)alturaJanela };
     app.barraLateral = { 0.0f, 0.0f, 340.0f, (float)alturaJanela };
 
-    // Inicia carregando o dataset completo de 10 linhas
+    // inicia carregando o dataset completo de 10 linhas
     app.carregarDataset(3);
 
     while (!WindowShouldClose()) {
